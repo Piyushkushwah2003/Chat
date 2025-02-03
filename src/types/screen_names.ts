@@ -1,0 +1,15 @@
+export type screenName =
+  | 'Login'
+  | 'Signup'
+  | 'Chatsdashboard'
+  | 'Profile'
+  | 'Calls'
+  | 'Status'
+  | 'Groups'
+  | 'Home'
+  | 'Chatview'
+  | 'Profileupload'
+  | 'Resetpassword'
+  | 'Chatscreen'
+  | 'Chats'
+  | 'UserBottomnavigation';

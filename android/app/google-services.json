@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "226669171024",
+    "project_id": "myproject-ea5b8",
+    "storage_bucket": "myproject-ea5b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226669171024:android:8a42511299a98f3ea35c55",
+        "android_client_info": {
+          "package_name": "com.safechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226669171024-ri8q9ug47hlhatl6vjpgoijv56v9babl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.safechat",
+            "certificate_hash": "d087600f2ef7f58c6562754ea702e87f68bb0496"
+          }
+        },
+        {
+          "client_id": "226669171024-odpsavmau20gesbjtb25shdbhujcicmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA5NpkPxKfkgQ-s159E3XIumImB0OeApY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226669171024-8cbonf96ju905lcmcht0sc89vl7ug23e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
