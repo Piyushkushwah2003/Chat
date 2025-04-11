@@ -12,4 +12,6 @@ export type screenName =
   | 'Resetpassword'
   | 'Chatscreen'
   | 'Chats'
-  | 'UserBottomnavigation';
+  | 'UserBottomnavigation'
+  | 'Splash'
+  | 'UploadPost';

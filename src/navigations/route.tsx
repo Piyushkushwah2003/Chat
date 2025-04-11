@@ -17,6 +17,8 @@ import addprofile from '../screens/addprofile';
 import resetpassword from '../screens/resetpassword';
 import chatscreen from '../screens/chatscreen';
 import userbottomnavigation from './userbottomnavigation';
+import splash from '../screens/splash';
+import uploadpost from '../screens/uploadpost';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,6 +30,7 @@ export default function () {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="Splash" component={splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={signup} />
         <Stack.Screen name="Chatsdashboard" component={chatsdashboard} />
@@ -41,9 +44,10 @@ export default function () {
         <Stack.Screen name="Resetpassword" component={resetpassword} />
         <Stack.Screen name="Chatscreen" component={chatscreen} />
         <Stack.Screen
-            name={'UserBottomnavigation'}
-            component={userbottomnavigation}
-          />
+          name={'UserBottomnavigation'}
+          component={userbottomnavigation}
+        />
+        <Stack.Screen name={'UploadPost'} component={uploadpost} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -14,8 +14,11 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {storeUser} from '../../services/firebase_fireStore';
 import {imageType} from '../../types/helpers';
-import { getToken } from '@react-native-firebase/messaging';
-import { getItem, StorageKeys } from '../../services/storage_services';
+import {getToken} from '@react-native-firebase/messaging';
+import {getItem, StorageKeys} from '../../services/storage_services';
+import RNFS from 'react-native-fs';
+import storage from '@react-native-firebase/storage';
+import { Platform } from 'react-native';
 export default function () {
   const data = useSelector((state: RootState) => state.Chats.Profileimage);
   const [name, setName] = useState<string>('');
@@ -24,8 +27,49 @@ export default function () {
   );
 
   const handlePress = async (name: string, image: imageType) => {
-    storeUser(Profiledata.userId, name, image, Profiledata.email,Profiledata.token);
-    navigate('UserBottomnavigation');
+    try {
+      // Get original URI 
+      const originalUri = Platform.OS === 'ios'
+        ? image.uri.replace('file://', '')
+        : image.uri;
+  
+      // Check if original file exists
+      const exists = await RNFS.exists(originalUri);
+      console.log('📁 File exists:', exists);
+      if (!exists) {
+        console.error('❌ File does not exist at:', originalUri);
+        return;
+      }
+  
+      // Copy file to app-accessible location
+      const fileName = image.name || `image_${Date.now()}.jpg`;
+      const destinationPath = `${RNFS.TemporaryDirectoryPath}/${fileName}`;
+  
+      await RNFS.copyFile(originalUri, destinationPath);
+      console.log('📦 Copied to:', destinationPath);
+  
+      // Upload from new path
+      const ref = storage().ref(`media/${fileName}`);
+      console.log('📤 Uploading to Firebase path:', ref.fullPath);
+  
+      await ref.putFile(destinationPath);
+      console.log('✅ Upload successful');
+  
+      const downloadUrl = await ref.getDownloadURL();
+      console.log('🌐 Download URL:', downloadUrl);
+  
+      storeUser(
+        Profiledata.userId,
+        name,
+        downloadUrl,
+        Profiledata.email,
+        Profiledata.token,
+      );
+  
+      navigate('UserBottomnavigation');
+    } catch (error: any) {
+      console.error('🔥 Upload error:', error.code || 'unknown', error.message || error);
+    }
   };
 
   return (

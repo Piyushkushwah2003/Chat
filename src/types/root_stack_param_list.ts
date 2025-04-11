@@ -13,6 +13,8 @@ type RootStackParamList = {
   Chatscreen: undefined;
   Chats: undefined;
   UserBottomnavigation:undefined;
+  Splash:undefined;
+  UploadPost:undefined;
 };
 
 export default RootStackParamList;

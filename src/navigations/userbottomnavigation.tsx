@@ -4,6 +4,7 @@ import { UserBottomNavigationType } from '../types/helpers';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Foundation from 'react-native-vector-icons/Foundation';
 import { COLORS, SIZE } from '../config/constants';
 import FlexBox from '../components/flexbox';
 import status from '../screens/status';
@@ -28,8 +29,8 @@ export default function () {
     },
     {
       name:'Groups',
-      icon:<MaterialCommunityIcons name="account-group" size={26} color="black" />,
-      iconfill:<MaterialCommunityIcons name="account-group" size={26} color={COLORS.PRIMARY_800} />
+      icon:<Foundation name="home" size={26} color="black" />,
+      iconfill:<Foundation name="home" size={26} color={COLORS.PRIMARY_800} />
     },
     {
       name:'Calls',

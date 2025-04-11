@@ -9,11 +9,12 @@ import {
 import {setChats, setMessages, setUsers} from '../redux/slices/chats_slice';
 import {getItem, setItem, StorageKeys} from './storage_services';
 import {navigate} from './navigation_services';
+import {ToastAndroid} from 'react-native';
 
 export const storeUser = async (
   userId: string,
   name: string,
-  Profileimage: imageType,
+  Profileimage: string,
   email: string,
   token: string,
 ) => {
@@ -87,6 +88,7 @@ export const getUser = async (dispatch: any, token: string) => {
       await navigate('UserBottomnavigation');
     } else {
       console.log('no data found');
+      navigate('Login')
     }
   } catch (error) {
     console.error('Error fetching filtered data:', error);
@@ -136,5 +138,18 @@ export const updateData = async () => {
     console.log('Document updated successfully!');
   } catch (error) {
     console.error('Error updating document: ', error);
+  }
+};
+
+export const storeFriends = async (senderId: string, recieverId: string) => {
+  try {
+    await firestore().collection('friends').doc(senderId).set({
+      senderId,
+      recieverId,
+      createdAt: firestore.FieldValue.serverTimestamp(),
+    });
+    ToastAndroid.show('added friend successfully', ToastAndroid.SHORT);
+  } catch (error) {
+    console.log('error---', error);
   }
 };
